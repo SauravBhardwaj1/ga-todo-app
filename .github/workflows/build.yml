@@ -18,4 +18,14 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Build Project
-        run: npm run build      
+        run: npm run build 
+  deploy:
+    runs-on: ubuntu-latest
+    need: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page.url }}
+    steps:
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1  
