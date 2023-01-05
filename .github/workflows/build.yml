@@ -21,7 +21,7 @@ jobs:
         run: npm run build 
   deploy:
     runs-on: ubuntu-latest
-    need: build
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page.url }}
